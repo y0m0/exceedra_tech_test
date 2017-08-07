@@ -28,7 +28,7 @@ I decided to solve the test by using a series of written steps and some pseudo
 code to better illustrate my reasoning.
 
 My first step was to logically split the dataset into the four groups below.
-This four groups represents the four different types of products with
+These groups represents the four different types of products with
 overlapping dates. By doing so I was able to reason more easily on how to
 proceed and clarify some of my initial assumptions.
 
@@ -56,7 +56,7 @@ Value |  From day   |  To day
 3     |  01-04-2014 | 01-01-2013
 ```
 
-A tree structure like the one below could be also used to represent this
+A tree structure like the one below could also be used to represent this
 specific dataset.
 This makes more evident the fact that this specific data could be interpreted as
 a one-to-many relationships where each node has only one parent but possibly
@@ -89,18 +89,15 @@ difficult to tell if it was used as one of the deciding factors while sorting
 the data. This comes from the fact that there are no overlapping
 "Valid from Date" values between a record and is direct successor. So there is
 no certain way to prove that the records are also sorted by "Value", even
-thought at first glance it might looks like they are.
+thought at first glance it might look like they are.
 
-A consequent assumption that could be made by looking at this particular set of
-data is that this is the result of a very specific query, so any consequent call
-to the same query will generate a resulting set of data sorted in same fashion.
+Consequently, it is possible to make the assumption that this particular set of data is the result of a very specific query. Hence, any consequent call to the same query will generate a resulting set of data sorted in same fashion
 See the [Extra thoughts](#extra-thoughts) section at the end for a possible
-solution when the data is not sorted.
+alternative solution when the data is not sorted.
 
-
-So if we take into account this assumption we can leverage it to drastically
+If we take into account this assumption, we can leverage it to drastically
 reduce the amount of operation needed to find duplicate records with overlapping
-dates. This effectively reduce the whole process to a maximum of 4 comparisons
+dates. This effectively reduces the whole process to a maximum of 4 comparisons
 between each record n and the record n + 1.
 
 By further analyzing this particular dataset we can also see that the records
@@ -139,24 +136,19 @@ I decided to change the "Valid to Day" value of the record n, by updating it
 with the "Valid from Day" value from the record n + 1, minus 1 day.
 
 This decision come from the assumption that the "Value" attribute of each record
-represent some sort of price for the product. And a new record is stored in the
+represent some sort of price for the product. A new record is then stored in the
 system when a new price is set for the same product, together with a starting
 date and an estimated end date.
-So it would seem reasonable to think that whoever is using this system, in order
-to maximize their profit, would want to sell the product at the new and higher
-price as soon as the new "Valid from Date" for the new price is reached.
-Hence why the new price would take precedence over the old one even if the
-"Valid to Date" for the previous price has not been reached yet.
+So it is reasonable to assume that in order to maximize profit, the product
+should be sold at the new and higher price as soon as the new "Valid from Date" for is reached. Hence why the new price would take precedence over the old one even if the "Valid to Date" for the previous price has not been reached yet.
 
 This left me dealing with the record that have 0000-00-00 / 9999-99-99 as dates.
 My initial thought was that 9999-99-99 could have been used as some sort of
 fallback date. But after doing some research I realized that those two
-particular values probably represent a NULL or faulty entry, so I decided that
-the way to go would be to treat the 9999-99-99 just like any other date and
-update it according the previous rules.
+particular values probably represent a NULL or faulty entry, so I decided to
+treat the 9999-99-99 just like any other date and update it accordingly to the previous rules.
 
-The table below illustrate what would be the resulting data after processing
-it by using the explained logic
+The table below illustrate what the resulting data after processing it by using the explained logic
 
 ![results](https://raw.githubusercontent.com/y0m0/exceedra_tech_test/master/results.png)
 
