@@ -1,3 +1,24 @@
+## The Task
+
+Create a process which solves parts A and B below; and then answer part C. Document your work using either a flowchart, pseudo-code, a written sequence of steps, or a programming language you are familiar with. The table below is example data, but your solution should be generic and hence applicable to any data supplied in this format.
+```
+A.  
+  Identify which pairs of rows have identical Products,
+  Customers and Measures, and overlapping date ranges;
+  e.g., as per rows 1 and 2.
+
+B.
+  Of the rows identified in part A, update the rows to
+  make the date ranges not overlap.
+
+C.
+  Document any assumptions or decisions you needed to
+  make for your solution.
+```
+![initial-data](https://raw.githubusercontent.com/y0m0/exceedra_tech_test/master/data.png)
+
+## My approach
+
 I decided to solve the test by using a series of written steps and some pseudo
 code to better illustrate my reasoning.
 
@@ -68,7 +89,7 @@ thought at first glance it might looks like they are.
 A consequent assumption that could be made by looking at this particular set of
 data is that this is the result of a very specific query, so any consequent call
 to the same query will generate a resulting set of data sorted in same fashion.
-See the [Extra Thoughts](#extra_thoughts) section at the end for a possible
+See the [Extra thoughts](#extra-thoughts) section at the end for a possible
 solution when the data is not sorted.
 
 
@@ -129,21 +150,22 @@ particular values probably represent a NULL or faulty entry, so I decided that
 the way to go would be to treat the 9999-99-99 just like any other date and
 update it according the previous rules.
 
-To better illustrate what would be the result of the whole process here is a
-table that shows it
+The table below illustrate what would be the resulting data after processing it accordingly to the previously explained logic
 
 ![results](https://raw.githubusercontent.com/y0m0/exceedra_tech_test/master/results.png)
 
-##### Extra thoughts
-If the assumptions that the data is the result of a very specific query that
-always return a sorted dataset was not fulfilled, then I will have to use a
-different approach. A possible solution that initially I considered was to sort
-the data in the same way it is sorted at the moment, and then proceed to update
-the overlapping dates by using the same logic I explained above.
-After some consideration I reckon that this approach will probably be best
-suited for a larger dataset where the same process have to be run several times.
+### Extra thoughts
+
+I made the assumption that  the data is the result of a very specific query
+which always returns a sorted dataset. In the case that this assumption is not
+fulfilled, a different approach would be required. A possible solution that I
+initially considered was to sort the data in the way it is sorted at the moment,
+and then proceed to update the overlapping dates by using the same logic I
+explained above.
+After some consideration, I believe this approach will probably be best
+suited for a larger dataset, where the same process have to be run several times.
 In that case the cost of the pre-sorting operation wouldn't have a big impact on
 efficiency and could in fact greatly reduce the cost of the whole process.
-In this specific case where we have only a very small dataset this
-operation would probably be way more expensive than simply iterating over the
+In this specific exercise, we only have a very small dataset. Hence, this
+operation would probably be more expensive than simply iterating over the
 whole dataset while comparing each single entry against each other.
