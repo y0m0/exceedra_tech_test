@@ -1,6 +1,11 @@
 ## The Task
 
-Create a process which solves parts A and B below; and then answer part C. Document your work using either a flowchart, pseudo-code, a written sequence of steps, or a programming language you are familiar with. The table below is example data, but your solution should be generic and hence applicable to any data supplied in this format.
+Create a process which solves parts A and B below; and then answer part C.
+Document your work using either a flowchart, pseudo-code, a written sequence
+of steps, or a programming language you are familiar with. The table below is
+example data, but your solution should be generic and hence applicable to any
+data supplied in this format.
+
 ```
 A.  
   Identify which pairs of rows have identical Products,
@@ -150,7 +155,8 @@ particular values probably represent a NULL or faulty entry, so I decided that
 the way to go would be to treat the 9999-99-99 just like any other date and
 update it according the previous rules.
 
-The table below illustrate what would be the resulting data after processing it accordingly to the previously explained logic
+The table below illustrate what would be the resulting data after processing
+it by using the explained logic
 
 ![results](https://raw.githubusercontent.com/y0m0/exceedra_tech_test/master/results.png)
 
